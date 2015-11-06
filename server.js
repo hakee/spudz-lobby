@@ -3,9 +3,9 @@ var express     = require('express'),
     mongoose    = require('mongoose'),
     morgan      = require('morgan'), //log requests in console
     bodyParser  = require('body-parser')
-    methodOvr   = require('method-override'); 
+    methodOvr   = require('method-override');
 
-var config      = require('./config'); //configurations
+var config      = require('./config'); //configuration
 
 require('./routes')(app); //routes
 
