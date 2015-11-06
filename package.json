@@ -1,0 +1,27 @@
+{
+  "name": "lobby",
+  "version": "1.0.0",
+  "description": "Spudz Lobby",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hakee/spudz-lobby.git"
+  },
+  "author": "Hakee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hakee/spudz-lobby/issues"
+  },
+  "homepage": "https://github.com/hakee/spudz-lobby",
+  "dependencies": {
+      "express": "latest",
+      "mongoose": "latest",
+      "morgan": "latest",
+      "body-parser": "latest",
+      "method-override": "latest"
+  }
+}
