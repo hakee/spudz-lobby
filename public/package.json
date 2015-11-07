@@ -12,13 +12,16 @@
     "angular-bootstrap": "*",
     "angular-cache": "*",
     "angular-cookies": "*",
+    "angular-jwt": "0.0.9",
     "angular-mocks": "*",
     "angular-moment": "*",
     "angular-resource": "^*",
     "angular-route": "^*",
+    "angular-ui-router": "*",
     "browserify": "*",
     "browserify-ngannotate": "*",
     "connect-livereload": "*",
+    "debowerify": "*",
     "del": "*",
     "express": "*",
     "gulp": "^*",
@@ -53,8 +56,6 @@
     "twix": "*",
     "underscore": "*",
     "vinyl-buffer": "*",
-    "vinyl-source-stream": "*",
-    "angular-ui-router": "*",
-    "debowerify": "*"
+    "vinyl-source-stream": "*"
   }
 }

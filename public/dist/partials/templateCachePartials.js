@@ -39,7 +39,8 @@ module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/components/unranked/unranked.view.html',
     '<div class="content-wrapper">\n' +
     '   <h5>Unranked</h5>\n' +
-    '</div>');
+    '</div>\n' +
+    '');
 }]);
 })();
 
@@ -86,6 +87,7 @@ module.run(['$templateCache', function($templateCache) {
     '        <span class="vdelimiter"></span>\n' +
     '        <a href="logout" class="logout"><i class="icon-power"></i></a>\n' +
     '    </div>\n' +
-    '</div>');
+    '</div>\n' +
+    '');
 }]);
 })();

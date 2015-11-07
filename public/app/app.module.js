@@ -16,6 +16,8 @@
     require('angular-ui-router');
     require('angular-bootstrap');
     require('angular-animate');
+    require('angular-jwt');
+
     require('../assets/js/ng-websocket/ngsockets.js');
 
 //    require('../assets/js/angular-snapscroll/angular-snapscroll');
@@ -44,7 +46,7 @@
     var loaderDirective     = require('./shared/loader/loader.directive');
 
 	angular
-		.module('Spudz', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngWebsocket', 'spudzTemplates'])
+		.module('Spudz', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngWebsocket','angular-jwt', 'spudzTemplates'])
 		.config(['$stateProvider', '$urlRouterProvider', appRoutes])
 
 		.controller('HomepageController', ['$scope', homepageCtrl])
@@ -57,5 +59,11 @@
         .directive('wsMenu', menuDirective)
         .directive('loader', loaderDirective)
 
-        .run(['$websocket', appSocket]);
+        .run(['$websocket', appSocket])
+
+        .config(function ($httpProvider, jwtInterceptorProvider) {
+          // Please note we're annotating the function so that the $injector works when the file is minified
+
+          $httpProvider.interceptors.push('jwtInterceptor');
+        });
 })();
