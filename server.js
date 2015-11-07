@@ -6,12 +6,13 @@ var express           = require('express'),
     methodOvr         = require('method-override'),
     request           = require('request'),
     passport          = require('passport'),
+    Account           = require('./models/account'),
     FacebookStrategy  = require('passport-facebook').Strategy,
     config            = require('./config'),
     routes            = require('./routes/index');
 
 // Init facebook passport
-require('./config/initializers/facebookPassport')(passport, request);
+require('./config/facebookPassport')(passport, request, Account);
 
 mongoose.connect('mongodb://localhost:27017/spudz-dev');
 
