@@ -55,9 +55,13 @@ app.post('/login', function(req, res) {
           expiresInMinutes: 1440
         });
 
-        res.json({
-          success: true,
-          token: token
+        account.token = token;
+        account.save(function(err) {
+          if(err) res.send(err);
+          res.json({
+            success: true,
+            token: token
+          });
         });
       }
     }
@@ -110,11 +114,16 @@ router.delete('/', function(req, res) {
 });
 
 router.get('/', function(req, res) {
-  Account.find({}, function(err, accounts) {
+  Account.findOne({token: req.headers['x-access-token']}, function(err, account) {
     if(err) res.send(req);
-    res.json(accounts);
-  })
-})
+    res.json({
+      firstName: account.firstName,
+      lastName: account.lastName,
+      email: account.email,
+      matches: account.matches
+    });
+  });
+});
 
 app.use('/api', router);
 

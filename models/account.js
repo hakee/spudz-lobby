@@ -9,7 +9,8 @@ var accountSchema = new Schema({
   password: String,
   wins: Number,
   totalGames: Number,
-  matches: [Match]
+  matches: [Match],
+  token: String
 });
 
 module.exports = mongoose.model('Account', accountSchema);
