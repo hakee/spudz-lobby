@@ -27,9 +27,15 @@ app.set('secret', config.secret);
 
 app.post('/register', function(req, res) {
   var account = new Account(req.body);
-  account.save(function(err) {
-    if(err) { return res.send(err); }
-    return res.send({success: true});
+  Account.find({name: req.body.email }, function(err, account) {
+    if(!account) {
+      account.save(function(err) {
+        if(err) { return res.send(err); }
+        return res.send({success: true});
+      });
+    } else {
+      return res.send({success: false, message: 'There already exists an user with that email' });
+    }
   });
 });
 
