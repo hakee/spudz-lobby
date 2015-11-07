@@ -6,7 +6,7 @@
 	'use strict';
 
 	var angular = require('angular');
-    var baseURL = "http://spudz.lo:8000";
+    var baseURL = "http://localhost:8000";
 
 	module.exports = angular.module('Spudz.Config', [])
 		.constant('global',  {

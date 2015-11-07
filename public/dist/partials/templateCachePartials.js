@@ -5,52 +5,6 @@ try {
   module = angular.module('spudzTemplates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/components/homepage/homepage.view.html',
-    '<div class="content-wrapper">\n' +
-    '        <a ui-sref="unranked">Unranked</a>\n' +
-    '        <a ui-sref="tournaments">Tournaments</a>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('spudzTemplates');
-} catch (e) {
-  module = angular.module('spudzTemplates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/components/tournaments/tournaments.view.html',
-    '<div class="content-wrapper">\n' +
-    '       <h5>Tournaments</h5>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('spudzTemplates');
-} catch (e) {
-  module = angular.module('spudzTemplates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/components/unranked/unranked.view.html',
-    '<div class="content-wrapper">\n' +
-    '   <h5>Unranked</h5>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('spudzTemplates');
-} catch (e) {
-  module = angular.module('spudzTemplates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/shared/loader/loader.view.html',
     '<div class="loader">\n' +
     '    <div class="overlay"></div>\n' +
@@ -135,6 +89,52 @@ module.run(['$templateCache', function($templateCache) {
     '        <button ng-click="signMeUp()">Register</button>\n' +
     '    </div>\n' +
     '    <a ui-sref="login">Login</a>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('spudzTemplates');
+} catch (e) {
+  module = angular.module('spudzTemplates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/components/tournaments/tournaments.view.html',
+    '<div class="content-wrapper">\n' +
+    '       <h5>Tournaments</h5>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('spudzTemplates');
+} catch (e) {
+  module = angular.module('spudzTemplates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/components/homepage/homepage.view.html',
+    '<div class="content-wrapper">\n' +
+    '        <a ui-sref="unranked">Unranked</a>\n' +
+    '        <a ui-sref="tournaments">Tournaments</a>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('spudzTemplates');
+} catch (e) {
+  module = angular.module('spudzTemplates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/components/unranked/unranked.view.html',
+    '<div class="content-wrapper">\n' +
+    '   <h5>Unranked</h5>\n' +
     '</div>\n' +
     '');
 }]);
