@@ -5,7 +5,7 @@
 (function(){
 	'use strict';
 
-	module.exports = function($rootScope, $scope, $location, $localStorage, Register){
+	module.exports = function($rootScope, $scope, $location, $localStorage, Auth){
 		var vm = this;
 
         $scope.user = {
@@ -25,10 +25,18 @@
 		};
 
         function signMeUp () {
-            console.log($scope.user.firstName);
-            console.log($scope.user.lastName);
-            console.log($scope.user.email);
-            console.log($scope.user.password);
+            var regData = $scope.user;
+            Auth.signup(regData, successAuth, function () {
+		       $rootScope.error = 'Failed to signup';
+		  	});
         }
+
+		function successAuth(res) {
+           if(res.success === true) {
+               $rootScope.$state.transitionTo('login')
+           } else {
+               alert(res.message);
+           }
+		};
 	};
 }());

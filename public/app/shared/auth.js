@@ -12,15 +12,16 @@
 	 * @returns {Object} Auth Service public methods (e.g. getAuthInfo)
 	**/
 	module.exports = function($http, $localStorage, global){
+//        $http.defaults.headers.post.ContentType = 'application/json';
 
 		var tokenClaims = getClaimsFromToken();
 
 		return {
 			signup: function (data, success, error) {
-               $http.post(global.BASE_API + '/signup', data).success(success).error(error)
+               $http.post(global.BASE + '/register', data).success(success).error(error)
 			},
 			signin: function (data, success, error) {
-			   $http.post(global.BASE_API + '/auth/login', data).success(success).error(error)
+			   $http.post(global.BASE + '/login', data).success(success).error(error)
 			},
 			logout: function (success) {
 			   tokenClaims = {};
@@ -31,21 +32,6 @@
 			   return tokenClaims;
 			}
 		}
-
-		//Public methods
-		// function doSignup(data, success, error){
-		// 	$http.post(global.BASE_API + '/signup', data)
-		// 		.then(doSignupSuccess)
-		// 		.catch(doSignupFailed);
-
-		// 		function doSignupSuccess(response){
-		// 			return response.data.results;
-		// 		}
-
-		// 		function doSignupFailed(error){
-		// 			console.log(error.data);
-		// 		}
-		// }
 
 		//Utility Methods
 		function urlBase64Decode(str){

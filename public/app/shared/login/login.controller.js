@@ -30,8 +30,20 @@
 		};
 
         function authMe () {
-            console.log($scope.user.email);
-            console.log($scope.user.password);
+            var loginData = $scope.user;
+
+            Auth.signin(loginData, successAuth, function () {
+		       $rootScope.error = 'Invalid credentials.';
+		  	});
         }
+
+        function successAuth(res) {
+            if(res.success === true){
+                $localStorage.token = res.token;
+                $rootScope.$state.transitionTo('homepage');
+            } else {
+                alert(res.message);
+            }
+		};
 	};
 }());

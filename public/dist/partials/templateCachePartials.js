@@ -5,12 +5,79 @@ try {
   module = angular.module('spudzTemplates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/components/homepage/homepage.view.html',
+    '<div class="content-wrapper">\n' +
+    '        <a ui-sref="unranked">Unranked</a>\n' +
+    '        <a ui-sref="tournaments">Tournaments</a>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('spudzTemplates');
+} catch (e) {
+  module = angular.module('spudzTemplates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/components/tournaments/tournaments.view.html',
+    '<div class="content-wrapper">\n' +
+    '       <h5>Tournaments</h5>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('spudzTemplates');
+} catch (e) {
+  module = angular.module('spudzTemplates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/components/unranked/unranked.view.html',
+    '<div class="content-wrapper">\n' +
+    '   <h5>Unranked</h5>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('spudzTemplates');
+} catch (e) {
+  module = angular.module('spudzTemplates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/shared/loader/loader.view.html',
     '<div class="loader">\n' +
     '    <div class="overlay"></div>\n' +
     '	<div class="wrap">\n' +
     '		<img src="images/logo.png" width="300px">\n' +
     '	</div>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('spudzTemplates');
+} catch (e) {
+  module = angular.module('spudzTemplates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/shared/login/login.view.html',
+    '<div class="login">\n' +
+    '    <div class="login-form">\n' +
+    '        <input type="text" ng-model="user.email" placeholder="Email">\n' +
+    '        <input type="password" ng-model="user.password" placeholder="Password">\n' +
+    '    </div>\n' +
+    '    <div>\n' +
+    '        <button ng-click="authMe()">Login</button>\n' +
+    '    </div>\n' +
     '</div>\n' +
     '');
 }]);
@@ -54,26 +121,6 @@ try {
   module = angular.module('spudzTemplates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/shared/login/login.view.html',
-    '<div class="login">\n' +
-    '    <div class="login-form">\n' +
-    '        <input type="text" ng-model="user.email" placeholder="Email">\n' +
-    '        <input type="password" ng-model="user.password" placeholder="Password">\n' +
-    '    </div>\n' +
-    '    <div>\n' +
-    '        <button ng-click="authMe()">Login</button>\n' +
-    '    </div>\n' +
-    '</div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('spudzTemplates');
-} catch (e) {
-  module = angular.module('spudzTemplates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/shared/register/register.view.html',
     '<div class="register">\n' +
     '    <div class="register-form">\n' +
@@ -83,53 +130,8 @@ module.run(['$templateCache', function($templateCache) {
     '        <input type="password" ng-model="user.password" placeholder="Password">\n' +
     '    </div>\n' +
     '    <div>\n' +
-    '        <button ng-click="authMe()">Login</button>\n' +
+    '        <button ng-click="signMeUp()">Register</button>\n' +
     '    </div>\n' +
-    '</div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('spudzTemplates');
-} catch (e) {
-  module = angular.module('spudzTemplates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/components/tournaments/tournaments.view.html',
-    '<div class="content-wrapper">\n' +
-    '       <h5>Tournaments</h5>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('spudzTemplates');
-} catch (e) {
-  module = angular.module('spudzTemplates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/components/unranked/unranked.view.html',
-    '<div class="content-wrapper">\n' +
-    '   <h5>Unranked</h5>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('spudzTemplates');
-} catch (e) {
-  module = angular.module('spudzTemplates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/components/homepage/homepage.view.html',
-    '<div class="content-wrapper">\n' +
-    '        <a ui-sref="unranked">Unranked</a>\n' +
-    '        <a ui-sref="tournaments">Tournaments</a>\n' +
     '</div>\n' +
     '');
 }]);
