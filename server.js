@@ -4,13 +4,14 @@ var express           = require('express'),
     morgan            = require('morgan'),
     bodyParser        = require('body-parser')
     methodOvr         = require('method-override'),
+    request           = require('request'),
     passport          = require('passport'),
     FacebookStrategy  = require('passport-facebook').Strategy,
     config            = require('./config'),
     routes            = require('./routes/index');
 
 // Init facebook passport
-require('./config/initializers/facebookPassport')(passport);
+require('./config/initializers/facebookPassport')(passport, request);
 
 mongoose.connect('mongodb://localhost:27017/spudz-dev');
 
