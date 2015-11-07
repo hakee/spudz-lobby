@@ -24,6 +24,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use('/api', routes);
 
+app.get('/', function (req, res) {
+    res.sendfile(config.publicPath + '/index.html');
+});
+
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { successRedirect: '/',

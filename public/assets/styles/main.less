@@ -1,9 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900);
 @import "modules/animate/animate";
 @import "modules/transitions/transitions";
+@import "modules/feather";
 
 body{
-	background-color: #fff;
+	background-color:#F1EBE4;
 	font-family: 'Raleway', sans-serif;
 }
 
@@ -12,14 +13,138 @@ body{
     padding:0;
 }
 
+a{
+    text-decoration: none;
+}
+
 .wrapper{
     position: relative;
+    max-width: 960px;
+    margin: 0 auto 0;
+    padding-top: 20px;
+
+    .nav-wrapper{
+        padding: 25px;
+        .spudz-branding{
+            position: relative;
+            float: left;
+            margin-top: -45px;
+            img{
+                width: 150px;
+            }
+        }
+        nav{
+            ul{
+                list-style: none;
+                li{
+                    float:left;
+                    margin-left:15px;
+                    a{
+                        padding: 5px;
+                        color: #3BAD1D;
+                        border-radius: 6px;
+                        transition: 0.5s all;
+                        font-weight: 500;
+                        line-height: 16px;
+                        -webkit-transition: 0.5s all;
+                        -moz-transition: 0.5s all;
+                        -o-transition: 0.5s all;
+                        .label{
+                            font-size: 11px;
+                            background-color: #fff;
+                            padding: 2px 5px 5px 5px;
+                            border-radius: 50%;
+                            margin-left: 5px;
+                            vertical-align: top;
+                        }
+                        &:hover, &.active, &:focus{
+                            background-color: #008200;
+                            box-shadow: 0px 3px 30px -10px #123A12;
+                            color: #fff;
+                            .label{
+                                color:#3BAD1D;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .profile{
+            position: relative;
+            float:right;
+            a{
+                padding: 5px;
+                color: #3BAD1D;
+                border-radius: 6px;
+                transition: 0.5s all;
+                font-weight: 500;
+                -webkit-transition: 0.5s all;
+                -moz-transition: 0.5s all;
+                -o-transition: 0.5s all;
+                &:hover, &.active, &:focus{
+                    background-color: #008200;
+                    box-shadow: 0px 3px 30px -10px #123A12;
+                    color: #fff;
+                }
+                &.logout{
+                    color:#8A8682!important;
+                    &:hover{
+                        background-color:transparent!important;
+                        color: #008200!important;
+                    }
+                }
+            }
+        }
+    }
     .main-container{
         overflow: hidden;
+        width: 100%;
         h5{
             font-weight: 100;
             font-size: 60px;
             color: #6D7B80;
         }
     }
+}
+
+.vdelimiter{
+    display: inline-block;
+    width: 1px;
+    background-color: #D2CCC5;
+    border-right: 1px solid #FFF;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.loader{
+    width: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -150px;
+    margin-top: -108px;
+    &.ng-enter{
+        -webkit-animation: scaleUp 0.8s;
+        -moz-animation: scaleUp 0.8s;
+        -ms-animation: scaleUp 0.8s;
+        animation: scaleUp 0.8s;
+    }
+    &.ng-leave{
+        -webkit-animation: scaleDown 0.8s;
+        -moz-animation: scaleDown 0.8s;
+        -ms-animation: scaleDown 0.8s;
+        animation: scaleDown 0.8s;
+    }
+    img{
+        width: 300px;
+    }
+    .overlay{
+        width:100%;
+        height: 100%;
+        position: fixed;
+        top:0;
+        left:0;
+        background-color:#696969;
+    }
+
 }

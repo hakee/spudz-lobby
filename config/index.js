@@ -1,7 +1,7 @@
 'use strict';
 
 var path        = require('path'),
-    rootPath    = path.normalize(__dirname + '/..');
+    rootPath    = path.normalize(__dirname + '/../');
 
 module.exports  = {
     root: rootPath,
@@ -12,5 +12,5 @@ module.exports  = {
       clientID: '921963694546058',
       clientSecret: '47a73802be02e9527ebf9eab3b6e991a'
     },
-    publicPath: rootPath + '/public/public'
+    publicPath: rootPath + '/public/dist'
 }

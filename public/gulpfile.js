@@ -4,18 +4,17 @@ var gulp = require('gulp'),
     less = require('gulp-less'),
     minifyCSS = require('gulp-minify-css'),
     karma = require('gulp-karma'),
-    jsdoc = require('gulp-jsdoc'),
+//    jsdoc = require('gulp-jsdoc'),
     jshint = require('gulp-jshint'),
     sourcemaps = require('gulp-sourcemaps'),
-    spritesmith = require('gulp.spritesmith'),
+//    spritesmith = require('gulp.spritesmith'),
     browserify = require('browserify'),
     source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
     uglify = require('gulp-uglify'),
     gutil = require('gulp-util'),
     rename = require('gulp-rename'),
-    ngAnnotate = require('browserify-ngannotate'),
-    notify = require('gulp-notify');
+    ngAnnotate = require('browserify-ngannotate');
 
 var CacheBuster = require('gulp-cachebust');
 var cachebust = new CacheBuster();
@@ -24,42 +23,36 @@ var cachebust = new CacheBuster();
 /*******************************
 ** 1. Clean
 
-** 3. Build-CSS
-** 4. Build-Template-Cache
-** 5. JSHINT
-** 6. Unit Test
-** 7. Build-JS
-** 8. Build
-** 9. Watch
-** 10. WebServer
-** 11. Dev
-** 12. Sprite
-** 13. Documentation
-** 14. Midway Test
-** 15. E2E Test
-** 16. IMGS
-** 16. Default task
+** 2. Build-CSS
+** 3. Build-Template-Cache
+** 4. JSHINT
+** 5. Build-JS
+** 6. Build
+** 7. Watch
+** 8. WebServer
+** 9. Dev
+** 10. Default task
 *******************************/
 
 /*
-* Cleans the build output (.e.g. public folder)
+* Cleans the build output (.e.g. dist folder)
 */
 gulp.task('clean-all', function (cb) {
-    del(['public/css', 'public/js', 'public/partials', 'public/index.html'], cb);
+    return del(['dist/css', 'dist/js', 'dist/partials', 'dist/index.html'], cb);
 });
 
 /*
-* Cleans the build output (public/js folder)
+* Cleans the build output (dist/js folder)
 */
 gulp.task('clean-js', function (cb) {
-    del(['public/js'], cb);
+    return del(['dist/js'], cb);
 });
 
 /*
-* Cleans the build output (.e.g. public/css folder)
+* Cleans the build output (.e.g. dist/css folder)
 */
 gulp.task('clean-css', function (cb) {
-    del(['public/css'], cb);
+   return  del(['dist/css'], cb);
 });
 
 
@@ -75,7 +68,7 @@ gulp.task('build-css', ['clean-css'], function() {
         // .pipe(cachebust.resources())
         .pipe(rename('base.min.css'))
         // .pipe(sourcemaps.write('./maps'))
-        .pipe(gulp.dest('./public/css'));
+        .pipe(gulp.dest('./dist/css'));
 });
 
 
@@ -93,7 +86,7 @@ gulp.task('build-template-cache', ['clean-js'], function() {
             prefix: "/"
         }))
         .pipe(concat("templateCachePartials.js"))
-        .pipe(gulp.dest("./public/partials"));
+        .pipe(gulp.dest("./dist/partials"));
 });
 
 
@@ -101,7 +94,7 @@ gulp.task('build-template-cache', ['clean-js'], function() {
 * run jsHint over all javascript files in application, using .jshintrc config file
 */
 gulp.task('jshint', function(done) {
-    gulp.src(['app/*.js','app/**/*.js'])
+    return gulp.src(['app/*.js','app/**/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'));
     done();
@@ -129,7 +122,7 @@ gulp.task('build-js', ['clean-js', 'build-template-cache'], function() {
         .on('error', gutil.log)
         .pipe(sourcemaps.write('./'))
         .pipe(rename('spudz.min.js'))
-        .pipe(gulp.dest('./public/js/'));
+        .pipe(gulp.dest('./dist/js/'));
 });
 
 
@@ -140,50 +133,17 @@ gulp.task('build-js', ['clean-js', 'build-template-cache'], function() {
 gulp.task('build', [ 'clean-all','build-css','build-template-cache', 'jshint', 'build-js'], function() {
     return gulp.src('index.html')
         .pipe(cachebust.references())
-        .pipe(gulp.dest('public'))
-        .pipe(notify('Build finished'));
-});
-
-
-/*
-* Generate a sprite .png and the corresponding SASS sprite map.
-* This is not included in the recurring development build and needs to be run separately
-*/
-gulp.task('sprite', function () {
-    // var spriteData = gulp.src('assets/img/*.jpg')
-    //     .pipe(spritesmith({
-    //         imgName: 'tour-sprite.png',
-    //         cssName: '_tour-sprite.scss',
-    //         algorithm: 'top-down',
-    //         padding: 5
-    //     }));
-
-    // // spriteData.css.pipe(sourcemaps.init())
-    // // spriteData.css.pipe(sass())
-    // // spriteData.css.pipe(sourcemaps.write('./maps'))
-    // spriteData.css.pipe(gulp.dest('./assets/styles'));
-
-    // spriteData.img.pipe(gulp.dest('./public/img'))
-});
-
-
-/*
-* Generate documentation files using JSDoc engine. The output is in /doc folder
-* JSDoc Documentation : http://usejsdoc.org/
-* Gulp JSDoc plugin : https://www.npmjs.com/package/gulp-jsdoc
-*/
-gulp.task('documentation', function(){
-    return gulp.src(['app/*.js', 'app/**/*.js', 'README.md'])
-        .pipe(jsdoc('./doc'));
+        .pipe(gulp.dest('dist'));
+//        .pipe(notify('Build finished'));
 });
 
 /*
-* Gather all files in assets/img and move them in public/img
+* Gather all files in assets/img and move them in dist/img
 */
 gulp.task('imgs', function(done) {
-    del(['public/img'], function(){
+    del(['dist/img'], function(){
         return gulp.src('assets/img/*.*')
-            .pipe(gulp.dest('./public/img'));
+            .pipe(gulp.dest('./dist/img'));
     });
 });
 
@@ -195,140 +155,33 @@ gulp.task('watch', function() {
     return gulp.watch(['index.html','app/**/*.html', 'assets/styles/*.*', 'app/**/*.js'], ['build']);
 });
 
-/*
-* Watches file system changes and triggers a build when it happens
-*/
-gulp.task('coverage-watch', ['coverage'], browserSync.reload);
-
 
 /*
-* Launches a webserver that serves the files in the current directory (/public)
+* Launches a webserver that serves the files in the current directory (/dist)
 * Triggers : Watch, Build
 */
 gulp.task('webserver', ['build'], function() {
-//    browserSync.init({
-//        notify : true,
-//        port : 8000,
-//        server : {
-//            baseDir : ["public"],
-//            routes : {
-//                '/node_modules' : 'node_modules'
-//            }
-//        }
-//    });
-//
-//    gulp.watch('app/**/*.*', ['watch']);
-});
-
-/*
-* Run karma tests over application .js files, using karma.conf.js config.
-* This task triggers Build-JS task, using it as dependency
-* Karma URL : http://karma-runner.github.io/0.12/index.html
-*/
-gulp.task('testing', function(done) {
-    var karma = require('karma').server;
-
-    karma.start({
-        configFile : __dirname + '/test/karma-unit.conf.js',
-        singleRun : true,
-        reporters: ['progress', 'html'],
-        // the default configuration
-        htmlReporter: {
-          outputDir: 'test/reports', // where to put the reports 
-          templatePath: null, // set if you moved jasmine_template.html
-          focusOnFailures: true, // reports show failures on start
-          namedFiles: false, // name files instead of creating sub-directories
-          pageTitle: null, // page title for reports; browser info by default
-          urlFriendlyName: false, // simply replaces spaces with _ for files/dirs
-          reportName: 'unit', // report summary filename; browser info by default
+    browserSync.init({
+        notify : true,
+        port : 8000,
+        server : {
+            baseDir : ["dist"],
+            routes : {
+                '/node_modules' : 'node_modules'
+            }
         }
-    }, function(){
-        done();
-    })
-});
-
-/*
-* Run karma tests over application .js files, using karma.conf.js config.
-* This task triggers Build-JS task, using it as dependency
-* Karma URL : http://karma-runner.github.io/0.12/index.html
-*/
-gulp.task('coverage', ['testing'], function(done) {
-    var karma = require('karma').server;
-
-    karma.start({
-        singleRun : true,
-        reporters: ['progress', 'coverage'],
-        coverageReporter:{
-          includeAllSources : true,
-          reporters : [{
-            type : 'html',
-            dir : 'test/reports/coverage',
-            subdir : '.'
-          },{
-            type : 'text'
-          }]
-        },
-        configFile : __dirname + '/test/karma-unit.conf.js',
-    }, function(){
-        done();
-    })
-});
-
-/*
-* Run karma tests over application .js files, using karma.conf.js config.
-* This task triggers Build-JS task, using it as dependency
-* Karma URL : http://karma-runner.github.io/0.12/index.html
-*/
-gulp.task('e2e-test', function(done) {
-    var karma = require('karma').server;
-
-    karma.start({
-        configFile : __dirname + '/test/karma-e2e.conf.js'
-    }, function(){
-        done();
     });
-});
 
-/*
-* Launches a webserver that serves the code coverage results (test/coverage)
-* Triggers : Unit-test
-*/
-//gulp.task('code-coverage', ['coverage'], function(done) {
-//    browserSync.init({
-//        notify:false,
-//        port:7777,
-//        server:{
-//            baseDir:["test/reports/coverage"],
-//        }
-//    })
-//
-//    gulp.watch('app/**/*.*', ['coverage-watch']);
+    return gulp.watch('app/**/*.*', ['watch']);
 });
-
-/*
-* Launches a webserver that serves the files in the current directory (/public)
-* Triggers : Watch, Build
-*/
-gulp.task('unit-test', ['testing'], function(done) {
-//    browserSync.init({
-//        notify : false,
-//        port : 7778,
-//        server : {
-//            baseDir:["test/reports/unit"],
-//        }
-//    });
-//
-//    gulp.watch(['app/**/*.*', 'test/**/*.js'], ['watch']);
-});
-
 
 /*
 * Triggers Build task, afterwhich republish to the running webserver (task 10)
 */
-gulp.task('dev', ['webserver', 'unit-test', 'code-coverage']);
+gulp.task('dev', ['webserver']);
 
 /*
 * Installs and builds everything, including sprites
-* Final result resides in /public folder
+* Final result resides in /dist folder
 */
 gulp.task('default', ['build']);

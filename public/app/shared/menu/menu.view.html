@@ -1,10 +1,19 @@
-<div class="overlay" ng-hide="!menuVisible">
-    <nav ng-hide="!animateMenu">
+<div class="nav-wrapper">
+    <div class="spudz-branding">
+        <a ui-sref="home">
+            <img src="/images/logo.png">
+        </a>
+    </div>
+    <nav>
         <ul>
-            <li><a ui-sref="studio" ng-click="toggleMenu()">Studio</a></li>
-            <li><a ui-sref="portofolio">Portofolio</a></li>
-            <li><a href="journal.html">Journal</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a ui-sref="homepage" ui-sref-active="active">Spudzboard</a></li>
+            <li><a ui-sref="unranked" ui-sref-active="active">Unranked <span class="label">35</span></a></li>
+            <li><a ui-sref="tournaments" ui-sref-active="active">Tournaments</a></li>
         </ul>
     </nav>
+    <div class="profile">
+        <a href="profile">My Spudz</a>
+        <span class="vdelimiter"></span>
+        <a href="logout" class="logout"><i class="icon-power"></i></a>
+    </div>
 </div>
