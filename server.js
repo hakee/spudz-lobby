@@ -6,7 +6,8 @@ var express           = require('express'),
     methodOvr         = require('method-override'),
     config            = require('./config');
     jwt               = require('jsonwebtoken'),
-    Account           = require('./models/account');
+    Account           = require('./models/account'),
+    Match             = require('./models/match'),
     router            = require('express').Router();
 
 // Connect to DB
@@ -84,6 +85,21 @@ router.use(function(req, res, next) {
 });
 
 router.get('/logout', function(req, res) {
+});
+
+router.post('/match', function(req, res) {
+  var match = new Match(req.body);
+  match.save(function(err) {
+    if(err) { return res.send(err); }
+    return res.send({success: true});
+  });
+});
+
+router.get('/match', function(req, res) {
+  Match.find(function(err, matches) {
+    if(err) { return res.send(err); }
+    res.json(matches);
+  })
 });
 
 router.delete('/', function(req, res) {
