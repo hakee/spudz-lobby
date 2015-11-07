@@ -1,13 +1,16 @@
-var express     = require('express'),
-    app         = express(),
-    mongoose    = require('mongoose'),
-    morgan      = require('morgan'), //log requests in console
-    bodyParser  = require('body-parser')
-    methodOvr   = require('method-override');
+var express           = require('express'),
+    app               = express(),
+    mongoose          = require('mongoose'),
+    morgan            = require('morgan'),
+    bodyParser        = require('body-parser')
+    methodOvr         = require('method-override'),
+    passport          = require('passport'),
+    FacebookStrategy  = require('passport-facebook').Strategy,
+    config            = require('./config'),
+    routes            = require('./routes/index');
 
-var config      = require('./config'); //configuration
-
-require('./routes')(app); //routes
+// Init facebook passport
+require('./config/initializers/facebookPassport')(passport);
 
 mongoose.connect('mongodb://localhost:27017/spudz-dev');
 
@@ -17,10 +20,14 @@ app.use(bodyParser.urlencoded({'extended':'true'}));            // parse \applic
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(methodOvr());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/api', routes);
 
-app.get('*', function (req, res) {
-    res.sendfile(config.publicPath + '/index.html');
-});
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { successRedirect: '/',
+                                      failureRedirect: '/login'}));
 
 app.listen(config.http.port);
 console.log('App listening on ' + config.http.port);

@@ -1,10 +1,11 @@
 'use strict';
 
-module.exports = function (app) {
-    app.get('/api/test', function (req, res){
-        var test = {
-            test: "test"
-        }
-        res.json(test);
-    });
-}
+var router = require('express').Router();
+
+router.route('/test')
+  .get(function(req, res) {
+    res.send('It is working')
+  });
+
+
+module.exports = router;

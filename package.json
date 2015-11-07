@@ -18,10 +18,12 @@
   },
   "homepage": "https://github.com/hakee/spudz-lobby",
   "dependencies": {
-      "express": "latest",
-      "mongoose": "latest",
-      "morgan": "latest",
-      "body-parser": "latest",
-      "method-override": "latest"
+    "body-parser": "latest",
+    "express": "latest",
+    "method-override": "latest",
+    "mongoose": "latest",
+    "morgan": "latest",
+    "passport": "^0.3.0",
+    "passport-facebook": "^2.0.0"
   }
 }
