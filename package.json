@@ -20,6 +20,7 @@
   "dependencies": {
     "body-parser": "latest",
     "express": "latest",
+    "jsonwebtoken": "^5.4.1",
     "method-override": "latest",
     "mongoose": "latest",
     "morgan": "latest",

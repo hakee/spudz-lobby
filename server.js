@@ -4,16 +4,13 @@ var express           = require('express'),
     morgan            = require('morgan'),
     bodyParser        = require('body-parser')
     methodOvr         = require('method-override'),
-    request           = require('request'),
-    passport          = require('passport'),
-    FacebookStrategy  = require('passport-facebook').Strategy,
-    config            = require('./config'),
-    routes            = require('./routes/index');
+    config            = require('./config');
+    jwt               = require('jsonwebtoken'),
+    Account           = require('./models/account');
+    router            = require('express').Router();
 
-// Init facebook passport
-require('./config/initializers/facebookPassport')(passport, request);
-
-mongoose.connect('mongodb://localhost:27017/spudz-dev');
+// Connect to DB
+mongoose.connect(config.dbPath);
 
 app.use(express.static(config.publicPath));
 app.use(morgan('dev'));                                         // log every request to the console
@@ -21,18 +18,82 @@ app.use(bodyParser.urlencoded({'extended':'true'}));            // parse \applic
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(methodOvr());
-app.use(passport.initialize());
-app.use(passport.session());
-app.use('/api', routes);
 
 app.get('/', function (req, res) {
     res.sendfile(config.publicPath + '/index.html');
 });
 
-app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { successRedirect: '/',
-                                      failureRedirect: '/login'}));
+app.set('secret', config.secret);
+
+app.post('/register', function(req, res) {
+  var account = new Account(req.body);
+  account.save(function(err) {
+    if(err) { return res.send(err); }
+    return res.send({success: true});
+  });
+});
+
+app.post('/login', function(req, res) {
+  Account.findOne({
+    name: req.body.name
+  }, function(err, account) {
+    if(err) { throw err; }
+    if(!account) {
+      res.json({ success: false, message: 'Authentication failed. Account not found' });
+    } else {
+      if(account.password != req.body.password) {
+        res.json({ success: false, message: 'Authentication failed. Wrong password' });
+      } else {
+        var token = jwt.sign(account, app.get('secret'), {
+          expiresInMinutes: 1440
+        });
+
+        res.json({
+          success: true,
+          token: token
+        });
+      }
+    }
+  });
+});
+
+router.use(function(req, res, next) {
+  var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+
+  if(token) {
+    jwt.verify(token, app.get('secret'), function(err, decoded) {
+      if(err) {
+        return res.json({ success: false, message: 'Failed to auth token' });
+      } else {
+        req.decoded = decoded;
+        next();
+      }
+    });
+  } else {
+    return res.status(403).send({
+      success: false,
+      message: 'No token provided'
+    });
+  }
+});
+
+router.get('/logout', function(req, res) {
+});
+
+router.delete('/', function(req, res) {
+  Account.remove({}, function(err) {
+    if(err) res.send(req);
+    res.send({message: 'Deleted'});
+  });
+});
+
+router.get('/', function(req, res) {
+  Account.find({}, function(err, accounts) {
+    if(err) res.send(req);
+    res.json(accounts);
+  })
+})
+
+app.use('/api', router);
 
 app.listen(config.http.port);
-console.log('App listening on ' + config.http.port);

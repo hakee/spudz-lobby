@@ -12,5 +12,7 @@ module.exports  = {
       clientID: '921963694546058',
       clientSecret: '47a73802be02e9527ebf9eab3b6e991a'
     },
+    secret: 'secretToken',
+    dbPath: 'mongodb://localhost:27017/spudz-dev',
     publicPath: rootPath + '/public/dist'
 }
