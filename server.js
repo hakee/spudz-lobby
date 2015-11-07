@@ -52,7 +52,7 @@ app.post('/login', function(req, res) {
         res.json({ success: false, message: 'Authentication failed. Wrong password' });
       } else {
         var token = jwt.sign(account, app.get('secret'), {
-          expiresInMinutes: 1440
+          expiresIn: 86400
         });
 
         account.token = token;

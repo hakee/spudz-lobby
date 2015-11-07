@@ -5,10 +5,9 @@ try {
   module = angular.module('spudzTemplates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/components/homepage/homepage.view.html',
+  $templateCache.put('/components/unranked/unranked.view.html',
     '<div class="content-wrapper">\n' +
-    '        <a ui-sref="unranked">Unranked</a>\n' +
-    '        <a ui-sref="tournaments">Tournaments</a>\n' +
+    '   <h5>Unranked</h5>\n' +
     '</div>\n' +
     '');
 }]);
@@ -36,9 +35,57 @@ try {
   module = angular.module('spudzTemplates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/components/unranked/unranked.view.html',
+  $templateCache.put('/components/homepage/homepage.view.html',
     '<div class="content-wrapper">\n' +
-    '   <h5>Unranked</h5>\n' +
+    '        <a ui-sref="unranked">Unranked</a>\n' +
+    '        <a ui-sref="tournaments">Tournaments</a>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('spudzTemplates');
+} catch (e) {
+  module = angular.module('spudzTemplates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/shared/register/register.view.html',
+    '<div class="register">\n' +
+    '    <div class="register-form">\n' +
+    '        <input type="text" ng-model="user.firstName" placeholder="First name">\n' +
+    '        <input type="text" ng-model="user.lastName" placeholder="Last name">\n' +
+    '        <input type="text" ng-model="user.email" placeholder="Email">\n' +
+    '        <input type="password" ng-model="user.password" placeholder="Password">\n' +
+    '    </div>\n' +
+    '    <div>\n' +
+    '        <button ng-click="signMeUp()">Register</button>\n' +
+    '    </div>\n' +
+    '    <a ui-sref="login">Login</a>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('spudzTemplates');
+} catch (e) {
+  module = angular.module('spudzTemplates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/shared/login/login.view.html',
+    '<div class="login">\n' +
+    '    <div class="login-form">\n' +
+    '        <input type="text" ng-model="user.email" placeholder="Email">\n' +
+    '        <input type="password" ng-model="user.password" placeholder="Password">\n' +
+    '    </div>\n' +
+    '    <div>\n' +
+    '        <button ng-click="authMe()">Login</button>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <a ui-sref="register">Create your Spudz account</a>\n' +
     '</div>\n' +
     '');
 }]);
@@ -69,29 +116,8 @@ try {
   module = angular.module('spudzTemplates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/shared/login/login.view.html',
-    '<div class="login">\n' +
-    '    <div class="login-form">\n' +
-    '        <input type="text" ng-model="user.email" placeholder="Email">\n' +
-    '        <input type="password" ng-model="user.password" placeholder="Password">\n' +
-    '    </div>\n' +
-    '    <div>\n' +
-    '        <button ng-click="authMe()">Login</button>\n' +
-    '    </div>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('spudzTemplates');
-} catch (e) {
-  module = angular.module('spudzTemplates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/shared/menu/menu.view.html',
-    '<div class="nav-wrapper">\n' +
+    '<div class="nav-wrapper" ng-hide="!isAuthenticated">\n' +
     '    <div class="spudz-branding">\n' +
     '        <a ui-sref="home">\n' +
     '            <img src="/images/logo.png">\n' +
@@ -105,32 +131,9 @@ module.run(['$templateCache', function($templateCache) {
     '        </ul>\n' +
     '    </nav>\n' +
     '    <div class="profile">\n' +
-    '        <a href="profile">My Spudz</a>\n' +
+    '        <a href="profile">{{globalPlayerInfo.firstName}}</a>\n' +
     '        <span class="vdelimiter"></span>\n' +
-    '        <a href="logout" class="logout"><i class="icon-power"></i></a>\n' +
-    '    </div>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('spudzTemplates');
-} catch (e) {
-  module = angular.module('spudzTemplates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/shared/register/register.view.html',
-    '<div class="register">\n' +
-    '    <div class="register-form">\n' +
-    '        <input type="text" ng-model="user.firstName" placeholder="First name">\n' +
-    '        <input type="text" ng-model="user.lastName" placeholder="Last name">\n' +
-    '        <input type="text" ng-model="user.email" placeholder="Email">\n' +
-    '        <input type="password" ng-model="user.password" placeholder="Password">\n' +
-    '    </div>\n' +
-    '    <div>\n' +
-    '        <button ng-click="signMeUp()">Register</button>\n' +
+    '        <a class="logout" ng-click="doLogout()"><i class="icon-power"></i></a>\n' +
     '    </div>\n' +
     '</div>\n' +
     '');
