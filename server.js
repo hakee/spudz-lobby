@@ -27,8 +27,8 @@ app.set('secret', config.secret);
 
 app.post('/register', function(req, res) {
   var account = new Account(req.body);
-  Account.find({name: req.body.email }, function(err, account) {
-    if(!account) {
+  Account.findOne({email: req.body.email}, function(err, acc) {
+    if(!acc) {
       account.save(function(err) {
         if(err) { return res.send(err); }
         return res.send({success: true});
@@ -41,7 +41,7 @@ app.post('/register', function(req, res) {
 
 app.post('/login', function(req, res) {
   Account.findOne({
-    name: req.body.name
+    email: req.body.email
   }, function(err, account) {
     if(err) { throw err; }
     if(!account) {
