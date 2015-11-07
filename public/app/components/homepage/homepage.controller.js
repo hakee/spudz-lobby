@@ -5,9 +5,9 @@
 		var vm 				= this;
 
 		activate();
-        $scope.user =
+
 		function activate(){
 //			
 		}
 	};
-})();
+}());

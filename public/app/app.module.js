@@ -17,10 +17,12 @@
     require('angular-bootstrap');
     require('angular-animate');
     require('angular-jwt');
+    require('ngstorage');
 
     require('../assets/js/ng-websocket/ngsockets.js');
 
-//    require('../assets/js/angular-snapscroll/angular-snapscroll');
+    //Global config
+    require('./app.config');
 
     //Template partials
     require('../dist/partials/templateCachePartials');
@@ -37,17 +39,28 @@
         tournamentCtrl      = require('./components/tournaments/tournaments.controller');
 
     //Shared
-    //1. Menu
+    ///Menu
     var menuCtrl            = require('./shared/menu/menu.controller');
     var menuDirective       = require('./shared/menu/menu.directive');
 
-    //3. Loader
+    ///Loader
     var loaderCtrl          = require('./shared/loader/loader.controller');
     var loaderDirective     = require('./shared/loader/loader.directive');
 
+    ///Login
+    var loginCtrl           = require('./shared/login/login.controller');
+    var registerCrl         = require('./shared/register/register.controller');
+
+
+    //Services
+    ///Auth Factory
+	var authService = require('./shared/auth');
+
 	angular
-		.module('Spudz', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngWebsocket','angular-jwt', 'spudzTemplates'])
-		.config(['$stateProvider', '$urlRouterProvider', appRoutes])
+		.module('Spudz', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngWebsocket','angular-jwt', 'ngStorage', 'Spudz.Config', 'spudzTemplates'])
+		.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', appRoutes])
+
+        .factory('Auth', ['$http', '$localStorage', 'global', authService])
 
 		.controller('HomepageController', ['$scope', homepageCtrl])
         .controller('UnrankedController', ['$scope', unrankedCtrl])
@@ -56,14 +69,10 @@
         //Shared
         .controller('MenuController', ['$scope', '$timeout', menuCtrl])
         .controller('LoaderController', ['$scope', loaderCtrl])
+        .controller('LoginController', ['$rootScope', '$scope', '$location', '$localStorage', 'Auth', loginCtrl])
+        .controller('RegisterController', ['$rootScope', '$scope', '$location', '$localStorage', 'Auth', registerCrl])
         .directive('wsMenu', menuDirective)
         .directive('loader', loaderDirective)
 
-        .run(['$websocket', appSocket])
-
-        .config(function ($httpProvider, jwtInterceptorProvider) {
-          // Please note we're annotating the function so that the $injector works when the file is minified
-
-          $httpProvider.interceptors.push('jwtInterceptor');
-        });
+        .run(['$websocket', appSocket]);
 })();

@@ -48,7 +48,7 @@
     "jshint-stylish": "*",
     "moment": "*",
     "moment-duration-format": "*",
-    "ngstorage": "*",
+    "ngstorage": "^0.3.9",
     "pixelsmith": "*",
     "spritesmith": "*",
     "sticky-table-headers": "*",
