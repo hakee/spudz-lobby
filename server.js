@@ -33,7 +33,7 @@ app.post('/register', function(req, res) {
   });
 });
 
-router.post('/login', function(req, res) {
+app.post('/login', function(req, res) {
   Account.findOne({
     name: req.body.name
   }, function(err, account) {
@@ -79,6 +79,20 @@ router.use(function(req, res, next) {
 
 router.get('/logout', function(req, res) {
 });
+
+router.delete('/', function(req, res) {
+  Account.remove({}, function(err) {
+    if(err) res.send(req);
+    res.send({message: 'Deleted'});
+  });
+});
+
+router.get('/', function(req, res) {
+  Account.find({}, function(err, accounts) {
+    if(err) res.send(req);
+    res.json(accounts);
+  })
+})
 
 app.use('/api', router);
 
