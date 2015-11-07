@@ -113,7 +113,7 @@ router.delete('/', function(req, res) {
   });
 });
 
-router.get('/', function(req, res) {
+router.get('/me', function(req, res) {
   Account.findOne({token: req.headers['x-access-token']}, function(err, account) {
     if(err) res.send(req);
     res.json({
