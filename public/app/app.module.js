@@ -88,15 +88,15 @@
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
             $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
-                if(toState.name !== 'register' || toState.name !== 'login'){
-                    if(!$rootScope.isAuthenticated){
-                        $state.go('login');
-                    } else {
-                        if(_.isEmpty($rootScope.globalPlayerInfo) || _.isUndefined($rootScope.globalPlayerInfo)){
-                            $rootScope.globalPlayerInfo = Auth.getTokenClaims();
-                        }
-                    }
-                }
+//                if(toState.name !== 'register' || toState.name !== 'login'){
+//                    if(!$rootScope.isAuthenticated){
+//                        $state.go('login');
+//                    } else {
+//                        if(_.isEmpty($rootScope.globalPlayerInfo) || _.isUndefined($rootScope.globalPlayerInfo)){
+//                            $rootScope.globalPlayerInfo = Auth.getTokenClaims();
+//                        }
+//                    }
+//                }
             });
         }]);
 })();

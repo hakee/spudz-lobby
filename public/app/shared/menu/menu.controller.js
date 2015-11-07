@@ -10,7 +10,13 @@
 
         function activate(){
             if($localStorage.token){
-                $rootScope.isAuthenticated = true;
+                if(_.isEmpty($rootScope.globalPlayerInfo) || _.isUndefined($rootScope.globalPlayerInfo)){
+                    Player.getPlayer($localStorage.token)
+                        .then(function (player) {
+                        $rootScope.globalPlayerInfo = player;
+                        $rootScope.isAuthenticated = true;
+                    });
+                }
             } else {
                 $rootScope.isAuthenticated = false;
             }
@@ -22,6 +28,7 @@
 
         function successLogout() {
             $rootScope.isAuthenticated = false;
+            $rootScope.globalPlayerInfo = {};
             $rootScope.$state.transitionTo('login');
 		};
 	}
