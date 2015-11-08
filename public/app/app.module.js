@@ -66,7 +66,7 @@
         .factory('Player', ['$http', '$localStorage', 'global', userService])
 
 		.controller('HomepageController', ['$scope', homepageCtrl])
-        .controller('UnrankedController', ['$scope', '$websocket', unrankedCtrl])
+        .controller('UnrankedController', ['$scope', '$websocket', 'Comms', unrankedCtrl])
         .controller('TournamentController', ['$scope', tournamentCtrl])
 
         //Shared

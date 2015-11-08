@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900);
+@import url(https://fonts.googleapis.com/css?family=Bubblegum+Sans);
 /*
  * animate.less v1.0.1 | animateforless.com
  *
@@ -6267,7 +6267,7 @@
 }
 body {
   background-color: #F1EBE4;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Bubblegum Sans', sans-serif;
 }
 * {
   margin: 0;
@@ -6281,6 +6281,30 @@ a {
   max-width: 960px;
   margin: 0 auto 0;
   padding-top: 20px;
+}
+.wrapper .big-branding {
+  width: 420px;
+  margin: 0 auto 0;
+}
+.wrapper .big-branding img {
+  width: 400px;
+}
+.wrapper .intro {
+  width: 700px;
+  margin: 0 auto 0;
+  text-align: center;
+}
+.wrapper .intro.ng-hide-leave {
+  animation: 0.5s bounceIn;
+  -webkit-animation: 0.5s bounceIn;
+  -moz-animation: 0.5s bounceIn;
+  -o-animation: 0.5s bounceIn;
+}
+.wrapper .intro.ng-hide-enter {
+  animation: 0.5s bounceOut;
+  -webkit-animation: 0.5s bounceOut;
+  -moz-animation: 0.5s bounceOut;
+  -o-animation: 0.5s bounceOut;
 }
 .wrapper .nav-wrapper {
   padding: 25px;
@@ -6416,6 +6440,7 @@ a {
 .wrapper .main-container .login-form .form-wrap .form-control input:focus,
 .wrapper .main-container .register-form .form-wrap .form-control input:focus {
   border-color: #298A14;
+  box-shadow: 0px 1px 8px -5px #000;
 }
 .wrapper .main-container .login-form .form-wrap .form-control button,
 .wrapper .main-container .register-form .form-wrap .form-control button {
@@ -6477,4 +6502,47 @@ a {
   top: 0;
   left: 0;
   background-color: #696969;
+}
+div.hidden {
+  display: none;
+}
+div.centered_container {
+  height: 200px;
+}
+div.centered {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Raleway', sans;
+}
+h5 {
+  margin-bottom: 40px;
+}
+.message {
+  margin-bottom: 20px;
+  font-family: 'Raleway', sans;
+  font-size: 18px;
+  color: #454E51;
+}
+.btn {
+  color: #ffffff;
+  font-size: 20px;
+  background: #008200;
+  padding: 10px 30px 10px 30px;
+  text-decoration: none;
+  border: none;
+}
+.btn:hover {
+  background: #123A12;
+  text-decoration: none;
+}
+.animate.ng-enter {
+  -webkit-animation: bounceIn 0.4s;
+  -moz-animation: bounceIn 0.4s;
+  -ms-animation: bounceIn 0.4s;
+  animation: bounceIn 0.4s;
+}
+.animate.ng-leave {
+  opacity: 0;
 }

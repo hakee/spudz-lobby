@@ -2,6 +2,7 @@
     'use strict';
 
     module.exports = function ($websocket) {
+        /**
         var socket_host = 'ws://192.168.8.2:8001';
         var ws = $websocket.$new(socket_host); // instance of ngWebsocket, handled by $websocket service
         console.log(ws);
@@ -16,5 +17,6 @@
         ws.$on('$close', function () {
             console.log('Noooooooooou, I want to have more fun with ngWebsocket, damn it!');
         });
+**/
     }
 }());
