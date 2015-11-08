@@ -62,8 +62,7 @@
 		.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', appRoutes])
 
         .factory('Auth', ['$http', '$localStorage', 'global', authService])
-
-
+        .factory('Comms', ['$websocket'])
 
         .factory('Player', ['$http', '$localStorage', 'global', userService])
 
