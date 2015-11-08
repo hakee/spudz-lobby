@@ -38,7 +38,26 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/components/unranked/unranked.view.html',
     '<div class="content-wrapper">\n' +
-    '   <h5>Unranked</h5>\n' +
+    '   <h5>Unranked Game</h5>\n' +
+    '\n' +
+    '   <div class="centered_container">\n' +
+    '	   <div class="hidden centered">\n' +
+    '	   	<button class="btn" ng-click="playUnranked()">Find match</button>\n' +
+    '	   </div>\n' +
+    '\n' +
+    '	   <div class="hidden centered">\n' +
+    '	   	<div class="message">Searching for a match ...</div>\n' +
+    '	   </div>\n' +
+    '\n' +
+    '	   <div class="hidden centered">\n' +
+    '	   	<div class="message">Match found! Press start when you are ready to start!</div>\n' +
+    '	   	<button class="btn" ng-click="readyUp()">Start</button>\n' +
+    '	   </div>\n' +
+    '\n' +
+    '	   <div class="hidden">\n' +
+    '	   	<div id="content"></div>\n' +
+    '	   </div>\n' +
+    '	  </div>\n' +
     '</div>\n' +
     '');
 }]);
@@ -162,6 +181,7 @@ module.run(['$templateCache', function($templateCache) {
     '            </div>\n' +
     '        </div>\n' +
     '    </div>\n' +
-    '</div>');
+    '</div>\n' +
+    '');
 }]);
 })();
