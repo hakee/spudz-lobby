@@ -1,11 +1,11 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900);
+@import url(https://fonts.googleapis.com/css?family=Bubblegum+Sans);
 @import "modules/animate/animate";
 @import "modules/transitions/transitions";
 @import "modules/feather";
 
 body{
 	background-color:#F1EBE4;
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Bubblegum Sans', sans-serif;
 }
 
 *{
@@ -22,6 +22,32 @@ a{
     max-width: 960px;
     margin: 0 auto 0;
     padding-top: 20px;
+
+    .big-branding{
+        width:420px;
+        margin:0 auto 0;
+        img{
+            width: 400px;
+        }
+    }
+
+    .intro{
+        width: 700px;
+        margin:0 auto 0;
+        text-align: center;
+        &.ng-hide-leave{
+            animation: 0.5s bounceIn;
+            -webkit-animation: 0.5s bounceIn;
+            -moz-animation: 0.5s bounceIn;
+            -o-animation: 0.5s bounceIn;
+        }
+        &.ng-hide-enter{
+            animation: 0.5s bounceOut;
+            -webkit-animation: 0.5s bounceOut;
+            -moz-animation: 0.5s bounceOut;
+            -o-animation: 0.5s bounceOut;
+        }
+    }
 
     .nav-wrapper{
         padding: 25px;
@@ -142,6 +168,7 @@ a{
                         }
                         &:focus{
                             border-color: #298A14;
+                            box-shadow: 0px 1px 8px -5px #000;
                         }
                     }
                     button{
@@ -209,4 +236,15 @@ a{
         background-color:#696969;
     }
 
+}
+
+.animate.ng-enter {
+	-webkit-animation: bounceIn 0.4s;
+	-moz-animation: bounceIn 0.4s;
+	-ms-animation: bounceIn 0.4s;
+	animation: bounceIn 0.4s;
+}
+
+.animate.ng-leave {
+	opacity: 0;
 }

@@ -1,1 +1,5 @@
 node_modules
+/public/dist/js/spudz.min.js
+/public/dist/partials/templateCachePartials.js
+/public/dist/css/base.min.css
+/public/dist/index.html
