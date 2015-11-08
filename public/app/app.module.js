@@ -62,7 +62,7 @@
 		.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', appRoutes])
 
         .factory('Auth', ['$http', '$localStorage', 'global', authService])
-        .factory('Comms', ['$websocket'])
+        .service('Comms', ['$websocket', wsComms])
 
         .factory('Player', ['$http', '$localStorage', 'global', userService])
 
@@ -77,7 +77,6 @@
         .controller('RegisterController', ['$rootScope', '$scope', '$location', '$localStorage', 'Auth', registerCrl])
         .directive('wsMenu', menuDirective)
         .directive('loader', loaderDirective)
-				.service('')
 
         .config(['$localStorageProvider', function ($localStorageProvider) {
                 $localStorageProvider.setKeyPrefix('spudz');

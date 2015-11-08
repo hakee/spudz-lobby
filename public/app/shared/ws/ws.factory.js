@@ -1,7 +1,16 @@
-module.exports = function($websocket){
-    function Comms(){}
-    Comms.prototype.addStateChangeListener = function(handler){
+function Comms($websocket){
+    
+}
+Comms.prototype.addStateChangeListener = function(handler){
 
-    };
-    return Comms;
 };
+Comms.prototype.ready = function(){
+
+};
+
+Comms.prototype.findMatch = function(){
+
+};
+
+
+module.exports = Comms
