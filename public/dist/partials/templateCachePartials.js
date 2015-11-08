@@ -39,6 +39,7 @@ module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/components/unranked/unranked.view.html',
     '<div class="content-wrapper">\n' +
     '   <h5>Unranked</h5>\n' +
+    '   <button ng-click="playUnranked()">Play Unranked</button>\n' +
     '</div>\n' +
     '');
 }]);
@@ -78,6 +79,8 @@ module.run(['$templateCache', function($templateCache) {
     '    <div>\n' +
     '        <button ng-click="authMe()">Login</button>\n' +
     '    </div>\n' +
+    '\n' +
+    '    <a ui-sref="register">Create your Spudz account</a>\n' +
     '</div>\n' +
     '');
 }]);
@@ -91,7 +94,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/shared/menu/menu.view.html',
-    '<div class="nav-wrapper">\n' +
+    '<div class="nav-wrapper" ng-hide="!isAuthenticated">\n' +
     '    <div class="spudz-branding">\n' +
     '        <a ui-sref="home">\n' +
     '            <img src="/images/logo.png">\n' +
@@ -105,9 +108,9 @@ module.run(['$templateCache', function($templateCache) {
     '        </ul>\n' +
     '    </nav>\n' +
     '    <div class="profile">\n' +
-    '        <a href="profile">My Spudz</a>\n' +
+    '        <a href="profile">{{globalPlayerInfo.firstName}}</a>\n' +
     '        <span class="vdelimiter"></span>\n' +
-    '        <a href="logout" class="logout"><i class="icon-power"></i></a>\n' +
+    '        <a class="logout" ng-click="doLogout()"><i class="icon-power"></i></a>\n' +
     '    </div>\n' +
     '</div>\n' +
     '');
@@ -132,6 +135,7 @@ module.run(['$templateCache', function($templateCache) {
     '    <div>\n' +
     '        <button ng-click="signMeUp()">Register</button>\n' +
     '    </div>\n' +
+    '    <a ui-sref="login">Login</a>\n' +
     '</div>\n' +
     '');
 }]);

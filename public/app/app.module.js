@@ -8,7 +8,6 @@
 
     global.jQuery   	    = require('jquery');
     global._                = require('underscore');
-    global.Snap             = require('snapsvg');
 
 //    require('../assets/animated-svg/js/svgicons.js');
 
@@ -55,34 +54,50 @@
     //Services
     ///Auth Factory
 	var authService = require('./shared/auth'),
-        userService = require('./shared/user/user.factory');
+        userService = require('./shared/user/user.factory'),
+				wsComms = require('./shared/ws/ws.factory');
 
 	angular
 		.module('Spudz', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngWebsocket','angular-jwt', 'ngStorage', 'Spudz.Config', 'spudzTemplates'])
 		.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', appRoutes])
 
         .factory('Auth', ['$http', '$localStorage', 'global', authService])
+
+
+
         .factory('Player', ['$http', '$localStorage', 'global', userService])
 
 		.controller('HomepageController', ['$scope', homepageCtrl])
-        .controller('UnrankedController', ['$scope', unrankedCtrl])
+        .controller('UnrankedController', ['$scope', '$websocket', unrankedCtrl])
         .controller('TournamentController', ['$scope', tournamentCtrl])
 
         //Shared
-        .controller('MenuController', ['$scope', '$timeout', 'Player', menuCtrl])
+        .controller('MenuController', ['$rootScope', '$scope', '$timeout', '$localStorage', 'Auth', 'Player', menuCtrl])
         .controller('LoaderController', ['$scope', loaderCtrl])
-        .controller('LoginController', ['$rootScope', '$scope', '$location', '$localStorage', 'Auth', loginCtrl])
+        .controller('LoginController', ['$rootScope', '$scope', '$location', '$localStorage', 'Auth', 'Player', loginCtrl])
         .controller('RegisterController', ['$rootScope', '$scope', '$location', '$localStorage', 'Auth', registerCrl])
         .directive('wsMenu', menuDirective)
         .directive('loader', loaderDirective)
+				.service('')
 
         .config(['$localStorageProvider', function ($localStorageProvider) {
                 $localStorageProvider.setKeyPrefix('spudz');
         }])
         .run(['$websocket', appSocket])
 
-        .run(['$rootScope', '$state', '$stateParams', function($rootScope, $state, $stateParams) {
+        .run(['$rootScope', '$state', '$stateParams', 'Auth', function($rootScope, $state, $stateParams, Auth) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
+            $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
+//                if(toState.name !== 'register' || toState.name !== 'login'){
+//                    if(!$rootScope.isAuthenticated){
+//                        $state.go('login');
+//                    } else {
+//                        if(_.isEmpty($rootScope.globalPlayerInfo) || _.isUndefined($rootScope.globalPlayerInfo)){
+//                            $rootScope.globalPlayerInfo = Auth.getTokenClaims();
+//                        }
+//                    }
+//                }
+            });
         }]);
 })();

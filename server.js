@@ -52,7 +52,7 @@ app.post('/login', function(req, res) {
         res.json({ success: false, message: 'Authentication failed. Wrong password' });
       } else {
         var token = jwt.sign(account, app.get('secret'), {
-          expiresInMinutes: 1440
+          expiresIn: 86400
         });
 
         account.token = token;
@@ -88,9 +88,6 @@ router.use(function(req, res, next) {
   }
 });
 
-router.get('/logout', function(req, res) {
-});
-
 router.post('/match', function(req, res) {
   var match = new Match(req.body);
   match.save(function(err) {
@@ -104,13 +101,6 @@ router.get('/match', function(req, res) {
     if(err) { return res.send(err); }
     res.json(matches);
   })
-});
-
-router.delete('/', function(req, res) {
-  Account.remove({}, function(err) {
-    if(err) res.send(req);
-    res.send({message: 'Deleted'});
-  });
 });
 
 router.get('/me', function(req, res) {

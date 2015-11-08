@@ -1,13 +1,10 @@
 (function(){
 	'use strict';
 
-	module.exports = function($scope){
+	module.exports = function($scope, $websocket){
 		var vm 				= this;
-
-		activate();
-
-		function activate(){
-//
+		$scope.playUnranked = function(){
+			console.log("hello world")
 		}
 	};
 })();

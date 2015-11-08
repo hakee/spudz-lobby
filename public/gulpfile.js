@@ -130,7 +130,7 @@ gulp.task('build-js', ['clean-js', 'build-template-cache'], function() {
 * Full build (except sprites), applies cache busting to the main page, .css and .js bundles
 * Triggers : Clean-All, Build-CSS, Build-Template-Cache, JSHINT, Build-JS
 */
-gulp.task('build', [ 'clean-all','build-css','build-template-cache', 'jshint', 'build-js'], function() {
+gulp.task('build', [ 'clean-all','build-css','build-template-cache', 'build-js'], function() {
     return gulp.src('index.html')
         .pipe(cachebust.references())
         .pipe(gulp.dest('dist'));
