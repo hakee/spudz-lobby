@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "angular": "^1.4.5"
+    "angular": "^1.4.5",
+    "gulp-karma": "0.0.5",
+    "karma": "^0.13.15"
   },
   "browserify": {
     "transform": [
@@ -20,6 +22,7 @@
     "angular-ui-router": "*",
     "browserify": "*",
     "browserify-ngannotate": "*",
+    "chai": "^3.4.0",
     "connect-livereload": "*",
     "debowerify": "*",
     "del": "*",

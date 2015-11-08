@@ -8,7 +8,6 @@
 
     global.jQuery   	    = require('jquery');
     global._                = require('underscore');
-    global.Snap             = require('snapsvg');
 
 //    require('../assets/animated-svg/js/svgicons.js');
 
@@ -55,7 +54,8 @@
     //Services
     ///Auth Factory
 	var authService = require('./shared/auth'),
-        userService = require('./shared/user/user.factory');
+        userService = require('./shared/user/user.factory'),
+				wsComms = require('./shared/ws/ws.factory');
 
 	angular
 		.module('Spudz', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngWebsocket','angular-jwt', 'ngStorage', 'Spudz.Config', 'spudzTemplates'])
@@ -68,7 +68,7 @@
         .factory('Player', ['$http', '$localStorage', 'global', userService])
 
 		.controller('HomepageController', ['$scope', homepageCtrl])
-        .controller('UnrankedController', ['$scope', unrankedCtrl])
+        .controller('UnrankedController', ['$scope', '$websocket', unrankedCtrl])
         .controller('TournamentController', ['$scope', tournamentCtrl])
 
         //Shared
@@ -78,6 +78,7 @@
         .controller('RegisterController', ['$rootScope', '$scope', '$location', '$localStorage', 'Auth', registerCrl])
         .directive('wsMenu', menuDirective)
         .directive('loader', loaderDirective)
+				.service('')
 
         .config(['$localStorageProvider', function ($localStorageProvider) {
                 $localStorageProvider.setKeyPrefix('spudz');
