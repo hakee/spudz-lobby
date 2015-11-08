@@ -1,4 +1,9 @@
 <div class="content-wrapper">
-        <a ui-sref="unranked">Unranked</a>
-        <a ui-sref="tournaments">Tournaments</a>
+    <div class="big-branding" ng-hide="isAuthenticated">
+        <img src="/images/logo.png">
+    </div>
+    <div class="intro" ng-hide="isAuthenticated">
+        <h5>Join the adventure</h5>
+        <a ui-sref="login">Login</a>
+    </div>
 </div>
