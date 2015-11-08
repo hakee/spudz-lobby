@@ -1,10 +1,11 @@
 function Comms($websocket){
-    this.$socket = $websocket.$new();
+    this.$socket = $websocket.$new('ws://192.168.8.2:8001/');
     this.handlers = [];
     this.reset();
 
     this.$socket.$on('$message', function(param){
-        if(param === 'end_match' && this.gameStarted){
+        console.log('mesg', param);
+        if(param.event === 'end_match' && this.gameStarted){
             this.reset();
             this.handlers.forEach(function(h){
                 h("endGame");
@@ -14,15 +15,15 @@ function Comms($websocket){
         if(this.gameStarted){
             return;
         }
-        this.matchFound = this.matchFound || param === 'match_found';
-        this.gameStarted = this.gameStarted || param === 'start_character_selection';
+        this.matchFound = this.matchFound || param.event === 'match_found';
+        this.gameStarted = this.gameStarted || param.event === 'start_character_selection';
         this.handlers.forEach(function(h){
-            if(param === 'match_found' && !this.beginReady){
+            if(param.event === 'match_found' && !this.beginReady){
                 this.beginReady = true;
                 h("beginReadyProcess");
                 return;
             }
-            if(param === 'start_character_selection'){
+            if(param.event === 'start_character_selection'){
                 h('beginGame');
                 return ;
             }

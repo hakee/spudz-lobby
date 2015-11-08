@@ -7,8 +7,13 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/components/homepage/homepage.view.html',
     '<div class="content-wrapper">\n' +
-    '        <a ui-sref="unranked">Unranked</a>\n' +
-    '        <a ui-sref="tournaments">Tournaments</a>\n' +
+    '    <div class="big-branding" ng-hide="isAuthenticated">\n' +
+    '        <img src="/images/logo.png">\n' +
+    '    </div>\n' +
+    '    <div class="intro" ng-hide="isAuthenticated">\n' +
+    '        <h5>Join the adventure</h5>\n' +
+    '        <a ui-sref="login">Login</a>\n' +
+    '    </div>\n' +
     '</div>\n' +
     '');
 }]);
@@ -38,18 +43,18 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/components/unranked/unranked.view.html',
     '<div class="content-wrapper">\n' +
-    '   <h5>Unranked Game</h5>\n' +
+    '   <h5>Unranked Game - {{currentState}}</h5>\n' +
     '\n' +
     '   <div class="centered_container">\n' +
-    '	   <div class="hidden centered">\n' +
-    '	   	<button class="btn" ng-click="playUnranked()">Find match</button>\n' +
+    '	   <div class=" centered">\n' +
+    '	   	<button class="btn" ng-click="findMatch()">Find match</button>\n' +
     '	   </div>\n' +
     '\n' +
-    '	   <div class="hidden centered">\n' +
+    '	   <div class=" centered">\n' +
     '	   	<div class="message">Searching for a match ...</div>\n' +
     '	   </div>\n' +
     '\n' +
-    '	   <div class="hidden centered">\n' +
+    '	   <div class=" centered">\n' +
     '	   	<div class="message">Match found! Press start when you are ready to start!</div>\n' +
     '	   	<button class="btn" ng-click="readyUp()">Start</button>\n' +
     '	   </div>\n' +
