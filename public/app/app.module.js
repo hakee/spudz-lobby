@@ -8,7 +8,7 @@
 
     global.jQuery   	    = require('jquery');
     global._                = require('underscore');
-    global.Snap             = require('snapsvg');
+//    global.Snap             = require('snapsvg');
 
 //    require('../assets/animated-svg/js/svgicons.js');
 

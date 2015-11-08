@@ -1,12 +1,28 @@
 <div class="register">
     <div class="register-form">
-        <input type="text" ng-model="user.firstName" placeholder="First name">
-        <input type="text" ng-model="user.lastName" placeholder="Last name">
-        <input type="text" ng-model="user.email" placeholder="Email">
-        <input type="password" ng-model="user.password" placeholder="Password">
+        <div class="big-branding">
+            <img src="/images/logo.png">
+        </div>
+        <div class="form-wrap">
+            <div class="form-control">
+                <input type="text" ng-model="user.firstName" placeholder="First name">
+            </div>
+            <div class="form-control">
+                <input type="text" ng-model="user.lastName" placeholder="Last name">
+            </div>
+            <div class="form-control">
+                <input type="text" ng-model="user.email" placeholder="Email">
+            </div>
+            <div class="form-control">
+                <input type="password" ng-model="user.password" placeholder="Password">
+            </div>
+            <div class="form-control">
+                <button ng-click="signMeUp()">Register</button>
+            </div>
+            <span class="choice">You're a Spudzer?</span>
+            <div>
+                <a ui-sref="login">Enter the world</a>
+            </div>
+        </div>
     </div>
-    <div>
-        <button ng-click="signMeUp()">Register</button>
-    </div>
-    <a ui-sref="login">Login</a>
 </div>
