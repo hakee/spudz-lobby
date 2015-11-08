@@ -51,7 +51,7 @@ app.post('/login', function(req, res) {
       if(account.password != req.body.password) {
         res.json({ success: false, message: 'Authentication failed. Wrong password' });
       } else {
-        var token = jwt.sign(account, app.get('secret'), {
+        var token = jwt.sign(account.email, app.get('secret'), {
           expiresIn: 86400
         });
 
