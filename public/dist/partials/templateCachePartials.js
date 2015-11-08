@@ -39,7 +39,6 @@ module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/components/unranked/unranked.view.html',
     '<div class="content-wrapper">\n' +
     '   <h5>Unranked</h5>\n' +
-    '   <button ng-click="playUnranked()">Play Unranked</button>\n' +
     '</div>\n' +
     '');
 }]);
@@ -73,14 +72,25 @@ module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/shared/login/login.view.html',
     '<div class="login">\n' +
     '    <div class="login-form">\n' +
-    '        <input type="text" ng-model="user.email" placeholder="Email">\n' +
-    '        <input type="password" ng-model="user.password" placeholder="Password">\n' +
+    '        <div class="big-branding">\n' +
+    '            <img src="/images/logo.png">\n' +
+    '        </div>\n' +
+    '        <div class="form-wrap">\n' +
+    '            <div class="form-control">\n' +
+    '                <input type="text" ng-model="user.email" placeholder="Email">\n' +
+    '            </div>\n' +
+    '            <div class="form-control">\n' +
+    '                <input type="password" ng-model="user.password" placeholder="Password">\n' +
+    '            </div>\n' +
+    '            <div class="form-control">\n' +
+    '                <button ng-click="authMe()">Login</button>\n' +
+    '            </div>\n' +
+    '            <span class="choice">Not a Spudzer yet?</span>\n' +
+    '            <div>\n' +
+    '                <a ui-sref="register">Join the adventure</a>\n' +
+    '            </div>\n' +
+    '        </div>\n' +
     '    </div>\n' +
-    '    <div>\n' +
-    '        <button ng-click="authMe()">Login</button>\n' +
-    '    </div>\n' +
-    '\n' +
-    '    <a ui-sref="register">Create your Spudz account</a>\n' +
     '</div>\n' +
     '');
 }]);
@@ -127,16 +137,31 @@ module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/shared/register/register.view.html',
     '<div class="register">\n' +
     '    <div class="register-form">\n' +
-    '        <input type="text" ng-model="user.firstName" placeholder="First name">\n' +
-    '        <input type="text" ng-model="user.lastName" placeholder="Last name">\n' +
-    '        <input type="text" ng-model="user.email" placeholder="Email">\n' +
-    '        <input type="password" ng-model="user.password" placeholder="Password">\n' +
+    '        <div class="big-branding">\n' +
+    '            <img src="/images/logo.png">\n' +
+    '        </div>\n' +
+    '        <div class="form-wrap">\n' +
+    '            <div class="form-control">\n' +
+    '                <input type="text" ng-model="user.firstName" placeholder="First name">\n' +
+    '            </div>\n' +
+    '            <div class="form-control">\n' +
+    '                <input type="text" ng-model="user.lastName" placeholder="Last name">\n' +
+    '            </div>\n' +
+    '            <div class="form-control">\n' +
+    '                <input type="text" ng-model="user.email" placeholder="Email">\n' +
+    '            </div>\n' +
+    '            <div class="form-control">\n' +
+    '                <input type="password" ng-model="user.password" placeholder="Password">\n' +
+    '            </div>\n' +
+    '            <div class="form-control">\n' +
+    '                <button ng-click="signMeUp()">Register</button>\n' +
+    '            </div>\n' +
+    '            <span class="choice">You\'re a Spudzer?</span>\n' +
+    '            <div>\n' +
+    '                <a ui-sref="login">Enter the world</a>\n' +
+    '            </div>\n' +
+    '        </div>\n' +
     '    </div>\n' +
-    '    <div>\n' +
-    '        <button ng-click="signMeUp()">Register</button>\n' +
-    '    </div>\n' +
-    '    <a ui-sref="login">Login</a>\n' +
-    '</div>\n' +
-    '');
+    '</div>');
 }]);
 })();

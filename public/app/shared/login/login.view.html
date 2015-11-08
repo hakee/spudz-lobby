@@ -1,11 +1,22 @@
 <div class="login">
     <div class="login-form">
-        <input type="text" ng-model="user.email" placeholder="Email">
-        <input type="password" ng-model="user.password" placeholder="Password">
+        <div class="big-branding">
+            <img src="/images/logo.png">
+        </div>
+        <div class="form-wrap">
+            <div class="form-control">
+                <input type="text" ng-model="user.email" placeholder="Email">
+            </div>
+            <div class="form-control">
+                <input type="password" ng-model="user.password" placeholder="Password">
+            </div>
+            <div class="form-control">
+                <button ng-click="authMe()">Login</button>
+            </div>
+            <span class="choice">Not a Spudzer yet?</span>
+            <div>
+                <a ui-sref="register">Join the adventure</a>
+            </div>
+        </div>
     </div>
-    <div>
-        <button ng-click="authMe()">Login</button>
-    </div>
-
-    <a ui-sref="register">Create your Spudz account</a>
 </div>

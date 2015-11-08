@@ -8,7 +8,6 @@
 
     global.jQuery   	    = require('jquery');
     global._                = require('underscore');
-
 //    require('../assets/animated-svg/js/svgicons.js');
 
     var angular     	    = require('angular');

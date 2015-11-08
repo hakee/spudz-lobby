@@ -104,6 +104,68 @@ a{
             font-size: 60px;
             color: #6D7B80;
         }
+        .login-form, .register-form{
+            width: 500px;
+            margin: 0 auto 0;
+            padding: 10px;
+            text-align: center;
+            .big-branding{
+                img{
+                    width: 200px;
+                }
+            }
+            .form-wrap{
+                position: relative;
+                margin-top: -20px;
+                .choice{
+                    display: inline-block;
+                    margin-bottom: 5px;
+                    color: #ABA8A4;
+                    text-shadow: 1px 1px 0px #FFFFFF;
+                }
+                .form-control{
+                    clear:both;
+                    margin: 10px;
+                    input{
+                        padding: 15px;
+                        border: 1px solid #F1EBE4;
+                        border-radius: 5px;
+                        outline: 0;
+                        font-size: 20px;
+                        transition: 0.5s all;
+                        width: 60%;
+                        -webkit-transition: 0.5s all;
+                        -moz-transition: 0.5s all;
+                        -o-transition: 0.5s all;
+                        &:hover{
+                            border-color: #B9AEA2;
+                        }
+                        &:focus{
+                            border-color: #298A14;
+                        }
+                    }
+                    button{
+                        width: 65%;
+                        padding: 10px;
+                        background: #33862E;
+                        border: 0;
+                        font-size: 20px;
+                        color: #fff;
+                        border-radius: 9px;
+                        -webkit-transition: 0.5s all;
+                        -moz-transition: 0.5s all;
+                        -o-transition: 0.5s all;
+                        &:hover{
+                            background-color:#134C0F;
+                        }
+                    }
+                    a{
+                        font-size: 16px;
+                        color: #BA6B41;
+                    }
+                }
+            }
+        }
     }
 }
 
