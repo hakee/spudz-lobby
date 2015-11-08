@@ -66,7 +66,7 @@
 
         .factory('Player', ['$http', '$localStorage', 'global', userService])
 
-		.controller('HomepageController', ['$scope', homepageCtrl])
+		.controller('HomepageController', ['$rootScope', '$scope', homepageCtrl])
         .controller('UnrankedController', ['$scope', '$websocket', 'Comms', unrankedCtrl])
         .controller('TournamentController', ['$scope', tournamentCtrl])
         .controller('ProfileController', ['$scope', '$localStorage', 'Player', profileCtrl])
@@ -87,16 +87,12 @@
         .run(['$rootScope', '$state', '$stateParams', 'Auth', function($rootScope, $state, $stateParams, Auth) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
-            $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
-//                if(toState.name !== 'register' || toState.name !== 'login'){
+//            $rootScope.$on('$stateChangeStart', function(event, toState, toStateParams) {
+//                if(toState.name !== 'login'){
 //                    if(!$rootScope.isAuthenticated){
 //                        $state.go('login');
-//                    } else {
-//                        if(_.isEmpty($rootScope.globalPlayerInfo) || _.isUndefined($rootScope.globalPlayerInfo)){
-//                            $rootScope.globalPlayerInfo = Auth.getTokenClaims();
-//                        }
 //                    }
 //                }
-            });
+//            });
         }]);
 })();

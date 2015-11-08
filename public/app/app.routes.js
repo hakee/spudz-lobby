@@ -9,8 +9,8 @@
 				url : '/',
 				views : {
 				    'main-view': {
-                        controller : 'UnrankedController',
-                        templateUrl : '/components/unranked/unranked.view.html'
+                        controller : 'HomepageController',
+                        templateUrl : '/components/homepage/homepage.view.html'
                     }
 				}
 			})
