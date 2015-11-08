@@ -34,7 +34,8 @@
     //Controllers
     var homepageCtrl 	    = require('./components/homepage/homepage.controller'),
         unrankedCtrl        = require('./components/unranked/unranked.controller'),
-        tournamentCtrl      = require('./components/tournaments/tournaments.controller');
+        tournamentCtrl      = require('./components/tournaments/tournaments.controller'),
+        profileCtrl         = require('./components/profile/profile.controller');
 
     //Shared
     ///Menu
@@ -68,6 +69,7 @@
 		.controller('HomepageController', ['$scope', homepageCtrl])
         .controller('UnrankedController', ['$scope', '$websocket', unrankedCtrl])
         .controller('TournamentController', ['$scope', tournamentCtrl])
+        .controller('ProfileController', ['$scope', 'Player', profileCtrl])
 
         //Shared
         .controller('MenuController', ['$rootScope', '$scope', '$timeout', '$localStorage', 'Auth', 'Player', menuCtrl])

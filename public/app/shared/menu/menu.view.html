@@ -1,6 +1,6 @@
 <div class="nav-wrapper" ng-hide="!isAuthenticated">
     <div class="spudz-branding">
-        <a ui-sref="home">
+        <a ui-sref="homepage">
             <img src="/images/logo.png">
         </a>
     </div>
@@ -12,8 +12,8 @@
         </ul>
     </nav>
     <div class="profile">
-        <a href="profile">{{globalPlayerInfo.firstName}}</a>
+        <a ui-sref="profile" ui-sref-active="active">{{globalPlayerInfo.firstName}}</a>
         <span class="vdelimiter"></span>
-        <a class="logout" ng-click="doLogout()"><i class="icon-power"></i></a>
+        <a class="logout" ng-click="doLogout()">Let me out</a>
     </div>
 </div>

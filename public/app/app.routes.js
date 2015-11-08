@@ -32,6 +32,15 @@
                     }
                 }
             })
+            .state('profile', {
+                url : '/profile',
+                views : {
+                    'main-view' : {
+                        controller : 'ProfileController',
+                        templateUrl : '/components/profile/profile.view.html'
+                    }
+                }
+            })
             .state('login', {
                 url : '/login',
                 views : {
