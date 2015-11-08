@@ -69,7 +69,7 @@
 		.controller('HomepageController', ['$scope', homepageCtrl])
         .controller('UnrankedController', ['$scope', '$websocket', 'Comms', unrankedCtrl])
         .controller('TournamentController', ['$scope', tournamentCtrl])
-        .controller('ProfileController', ['$scope', 'Player', profileCtrl])
+        .controller('ProfileController', ['$scope', '$localStorage', 'Player', profileCtrl])
 
         //Shared
         .controller('MenuController', ['$rootScope', '$scope', '$timeout', '$localStorage', 'Auth', 'Player', menuCtrl])

@@ -1,10 +1,12 @@
 <div class="content-wrapper">
     <div class="profile-page">
         <div class="left-side">
-            <h5>My matches</h5>
+            <h5 ng-show="globalPlayerInfo.matches.length > 0">My matches</h5>
+            <h5 ng-show="globalPlayerInfo.matches.length === 0">No matches played yet</h5>
         </div>
         <div class="right-side">
             <h5>{{globalPlayerInfo.firstName}}&nbsp;{{globalPlayerInfo.lastName}}</h5>
+            <span class="info">{{globalPlayerInfo.email}}</span>
         </div>
     </div>
 </div>

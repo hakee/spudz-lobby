@@ -8,10 +8,10 @@
 			.state('homepage', {
 				url : '/',
 				views : {
-					'main-view': {
-						controller : 'HomepageController',
-						templateUrl : '/components/homepage/homepage.view.html'
-					}
+				    'main-view': {
+                        controller : 'UnrankedController',
+                        templateUrl : '/components/unranked/unranked.view.html'
+                    }
 				}
 			})
             .state('unranked', {
