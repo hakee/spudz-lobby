@@ -1,22 +1,27 @@
 <div class="content-wrapper">
-   <h5>Unranked Game - {{currentState}}</h5>
+   <h5>Unranked Game</h5>
 
    <div class="centered_container">
-	   <div class=" centered">
+	   <div ng-class="{hidden : !showFindMatch}" class=" centered">
 	   	<button class="btn" ng-click="findMatch()">Find match</button>
 	   </div>
 
-	   <div class=" centered">
+	   <div ng-class="{hidden : !showSearching}" class=" centered">
 	   	<div class="message">Searching for a match ...</div>
 	   </div>
 
-	   <div class=" centered">
+	   <div ng-class="{hidden : !showReady}" class=" centered">
 	   	<div class="message">Match found! Press start when you are ready to start!</div>
 	   	<button class="btn" ng-click="readyUp()">Start</button>
 	   </div>
 
-	   <div class="hidden">
-	   	<div id="content"></div>
+
+	   <div ng-class="{hidden : !showWaitingOp}" class=" centered">
+	   	<div class="message">Wating for oponent to be ready ...</div>
+	   </div>
+
+	   <div ng-class="{hidden : !showClient}" class="hidden">
+	   	<div id="content"> game client here </div>
 	   </div>
 	  </div>
 </div>
